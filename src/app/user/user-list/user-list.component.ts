@@ -1,5 +1,7 @@
+import { ConditionalExpr } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user.class';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -9,13 +11,22 @@ import { User } from '../user.class';
 export class UserListComponent implements OnInit {
 
   users: User[] = [
-    new User(1, "parth715", "Parth", "Patel"),
-    new User(2, "sa", "System", "Admin"),
-    new User(3, "rv", "System", "Reviewer")
+    
   ]
-  constructor() { }
+  constructor(
+    private usrsrv: UserService
+  ) { }
 
   ngOnInit(): void {
+    this.usrsrv.list().subscribe(
+      res => {
+        console.debug("Users:", res)
+        this.users = res
+      },
+      err => {
+        console.error(err);
+      }
+    );
   }
 
 }

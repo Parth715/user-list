@@ -15,7 +15,7 @@ import { MenuitemComponent } from './menu/menuitem/menuitem.component';
     MenuitemComponent
   ],
   imports: [
-    BrowserModule, FormsModule
+    BrowserModule, FormsModule, HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
